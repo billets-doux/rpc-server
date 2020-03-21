@@ -1,5 +1,6 @@
 package org.example;
 
+@RpcService(IHelloService.class)
 public class IHelloServiceImpl implements IHelloService {
     @Override
     public String sayHello(String content) {
