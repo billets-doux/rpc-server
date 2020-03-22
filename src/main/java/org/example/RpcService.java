@@ -12,4 +12,7 @@ import java.lang.annotation.Target;
 @Component
 public @interface RpcService {
     Class<?> value(); // 拿到服务类和接口
+
+    String version() default "";
+
 }

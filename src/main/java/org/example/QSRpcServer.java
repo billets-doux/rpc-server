@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -61,6 +62,10 @@ public class QSRpcServer implements ApplicationContextAware, InitializingBean {
                 RpcService rpcService = value.getClass().getAnnotation(RpcService.class);
                 //拿到名称
                 String serviceName = rpcService.value().getName();
+                String version = rpcService.version();//拿到版本号
+                if (!StringUtils.isEmpty(version)){
+                    serviceName += "="+version;
+                }
                 handlerMap.put(serviceName, value);
             });
         }
